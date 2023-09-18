@@ -5,7 +5,7 @@ on:
     branches:
       - main # main 브랜치에 push할 때
     paths:
-      - "myenv/**" # myenv 디렉토리에 변경이 있을 때
+      - "./**" # myenv 디렉토리에 변경이 있을 때
 jobs:
   deploy:
     name: Deploy
@@ -41,7 +41,6 @@ jobs:
           IMAGE_TAG: ${{ steps.image.outputs.version }}
 
         run: |
-          cd myenv
           echo "::set-output name=ecr_repository::$ECR_REPOSITORY"
           echo "::set-output name=image_tag::$IMAGE_TAG"
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f myenv/Dockerfile .
