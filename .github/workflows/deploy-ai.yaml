@@ -5,7 +5,7 @@ on:
     branches:
       - main # main 브랜치에 push할 때
     paths:
-      - "./**" # myenv 디렉토리에 변경이 있을 때
+      - "myenv/**" # myenv 디렉토리에 변경이 있을 때
 jobs:
   deploy:
     name: Deploy
