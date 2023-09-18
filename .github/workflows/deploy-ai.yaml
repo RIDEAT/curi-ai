@@ -41,6 +41,7 @@ jobs:
           IMAGE_TAG: ${{ steps.image.outputs.version }}
 
         run: |
+          cd myenv
           echo "::set-output name=ecr_repository::$ECR_REPOSITORY"
           echo "::set-output name=image_tag::$IMAGE_TAG"
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f myenv/Dockerfile .
