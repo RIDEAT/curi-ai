@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from dotenv import load_dotenv
-from chatbot import chat, update
+from chatbot import chat
 from pymongo import MongoClient
 
 
