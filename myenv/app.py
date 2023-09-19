@@ -36,7 +36,7 @@ def text_to_ai():
         file_path = os.path.join('myenv', 'workflow', f'{workflowId}.txt')
 
         # 파일에 텍스트 쓰기
-        with open(file_path, 'w') as file:
+        with open(file_path, 'w+') as file:
             file.write(text)
 
 
