@@ -1,1 +1,5 @@
 flask
+langchain
+pinecone-client
+openai
+tiktoken
