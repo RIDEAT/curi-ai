@@ -66,7 +66,7 @@ print (f'Now you have {len(texts)} documents') """
 
 # In[34]:
 
-txt_file_path = "./restApi.txt"
+txt_file_path = "myenv/restApi.txt"
 
 # 텍스트 파일을 읽어서 내용을 저장할 리스트 생성
 texts = []
