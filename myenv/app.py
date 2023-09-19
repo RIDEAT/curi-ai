@@ -32,7 +32,10 @@ def chat_to_ai():
 
         # JSON 데이터 처리ß
         text = data.get('text')
+        print(text)
         question = data.get('question')
+        print(question)
+
         
         response = chat(text, question)
 
