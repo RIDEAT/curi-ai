@@ -3,3 +3,4 @@ langchain
 pinecone-client
 openai
 tiktoken
+dotenv
