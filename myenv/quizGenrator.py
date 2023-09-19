@@ -124,17 +124,12 @@ docsearch = Pinecone.from_texts([t for t in texts], embeddings, index_name=index
 
 
 
-# In[47]:
 
-
-query = "rest api 가 뭔가요?"
-docs = docsearch.similarity_search(query)
 
 # In[49]:
 
 
 # Here's an example of the first document that was returned
-print(docs[1].page_content[:450])
 
 # ### Query those docs to get your answer back
 
@@ -150,16 +145,9 @@ from langchain.chains.question_answering import load_qa_chain
 llm = OpenAI(temperature=0, openai_api_key=OPENAI_API_KEY)
 chain = load_qa_chain(llm, chain_type="stuff")
 
-# In[52]:
-
-query = "rest api 가 뭔가요?"
-docs = docsearch.similarity_search(query)
-
-# In[53]:
-chain.run(input_documents=docs, question=query)
 
 
 def quizGenerator(input_data):
     # 이곳에서 원하는 작업을 수행하고 결과를 반환합니다.
     docs = docsearch.similarity_search(input_data)
-    return chain.run(input_documents=docs ,question="Create 3 OX questions whose answer is O or X. follow the format: Q: Is seoul the capital of Korea? A: O")
+    return chain.run(input_documents=docs ,question=input_data)
