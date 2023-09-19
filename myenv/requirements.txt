@@ -4,3 +4,4 @@ pinecone-client
 openai
 tiktoken
 python-dotenv
+pymongo
