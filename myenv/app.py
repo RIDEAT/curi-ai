@@ -30,8 +30,14 @@ def text_to_ai():
         data = request.get_json()
 
         text = data.get('text')
-        
-        update(text)
+        workflowId = data.get('workflowId')
+
+  # 파일 경로 생성
+        file_path = os.path.join('myenv', 'workflow', f'{workflowId}.txt')
+
+        # 파일에 텍스트 쓰기
+        with open(file_path, 'w') as file:
+            file.write(text)
 
 
         return jsonify({'message': 'Data received and stored successfully'}), 201
@@ -46,8 +52,9 @@ def chat_to_ai():
 
         # JSON 데이터 처리ß
         text = data.get('text')
+        workflowId = data.get('workflowId')
         
-        response = chat(text)
+        response = chat(text, workflowId)
 
         return jsonify({'message': response}), 201
     except Exception as e:
