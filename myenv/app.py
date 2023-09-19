@@ -31,6 +31,8 @@ def chat_to_ai():
         data = request.get_json()
 
         # JSON 데이터 처리ß
+        
+        
         text = data.get('text')
         print(text)
         question = data.get('question')
@@ -38,8 +40,9 @@ def chat_to_ai():
 
         
         response = chat(text, question)
+        print(response)
 
-        return jsonify({'message': response}), 201
+        return response, 201
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
