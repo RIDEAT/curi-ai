@@ -5,3 +5,5 @@ openai
 tiktoken
 python-dotenv
 pymongo
+boto3
+flask-cors
