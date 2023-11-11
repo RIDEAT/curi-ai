@@ -50,7 +50,7 @@ class AgentConversation:
         self.tool = create_retriever_tool(
         self.retriever, 
         "search_about_company_internal_works_and_reulations",
-        "Searches and returns documents regarding the company internal work, regulations."
+        "Searches and returns documents regarding the company internal work, regulations including information about vacation policies."
         )
 
         self.tools = [self.tool]
