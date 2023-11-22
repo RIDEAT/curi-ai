@@ -10,7 +10,7 @@ load_dotenv()
 import os
 
 app = Flask(__name__)
-CORS(app)
+CORS(app,origins=["https://view.dev.workplug.team","https://view.workplug.team"])
 
 @app.route('/')
 def hello_world():
