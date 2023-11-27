@@ -46,18 +46,18 @@ class AgentConversation:
     def initialize_docsearch(self):
         docsearch = Pinecone.from_existing_index(index_name=self.index_name, embedding=embeddings)
         memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True,input_key="question", output_key="answer")
-        self.retriever = docsearch.as_retriever(search_kwargs={'k':1})
+        self.retriever = docsearch.as_retriever(search_kwargs={'k':2})
         self.tool = create_retriever_tool(
         self.retriever, 
-        "search_about_company_internal_works_and_reulations",
-        "Searches and returns documents regarding the company internal work, regulations including information about vacation policies."
+        "search_about_company_internal_works_and_regulations",
+        "Searches and returns documents regarding the company internal work, programming guidelines and regulations including information about vacation policies."
         )
 
         self.tools = [self.tool]
         system_message = SystemMessage(
         content=(
             "You are a chat assistant based on company information. "
-            "If the question is not related to company work or regulations, you will respond with, '저는 사내 정보와 관련된 질문 외에는 답변할 수 없습니다.'"
+            "If the question is not related to company work or programming guidelines or regulations, you will respond with, '저는 사내 정보와 관련된 질문 외에는 답변할 수 없습니다.'"
             "Do your best to answer the questions. "
             "Feel free to use any tools available to look up "
             "relevant information, only if necessary"
@@ -66,7 +66,7 @@ class AgentConversation:
 
         self.agent_executor = create_conversational_retrieval_agent(ChatOpenAI(temperature = 0), self.tools, verbose=True, system_message=system_message)
 
-        self.qa = ConversationalRetrievalChain.from_llm(OpenAI(temperature=0), docsearch.as_retriever(search_kwargs={'k':1}),memory=memory, return_source_documents=True, condense_question_llm = ChatOpenAI(temperature=0, model='gpt-3.5-turbo'),
+        self.qa = ConversationalRetrievalChain.from_llm(OpenAI(temperature=0), docsearch.as_retriever(search_kwargs={'k':2}),memory=memory, return_source_documents=True, condense_question_llm = ChatOpenAI(temperature=0, model='gpt-3.5-turbo'),
 )   
        
     def chat(self, input):
